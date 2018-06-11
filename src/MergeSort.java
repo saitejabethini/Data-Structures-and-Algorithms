@@ -16,36 +16,44 @@ public class MergeSort
         }
         System.out.println(Arrays.toString(ar));
         MergeSort ms = new MergeSort();
-        ms.mergesort(ar);
+      ms.merge(ar);
+        System.out.println(Arrays.toString(ar));
     }
-    public static int[] mergesort(int[] ar) {
+ public int[] mergesort(int[] ar) {
         int n = ar.length;
         int[] left;
         int[] right;
 
-        if (n % 2 == 0) {
-            left = new int[n / 2];
-            right = new int[n / 2];
-        } else {
-            left = new int[n / 2];
-            right = new int[n / 2 + 1];
-        }
-
-        for (int i = 0; i < n; i++) {
-            if (i < n / 2) {
-                left[i] = ar[i];
-            } else {
-                right[i - n / 2] = ar[i];
+        if (n % 2 == 0)
+            {
+                left = new int[n / 2];
+                right = new int[n / 2];
             }
+        else
+            {
+                left = new int[n / 2];
+                right = new int[n / 2 + 1];
+            }
+
+        for (int i = 0; i < n; i++)
+            {
+                if (i < n / 2)
+                {
+                    left[i] = ar[i];
+                }
+            else
+                {
+                    right[i - n / 2] = ar[i];
+                }
         }
         //recursion to split and merge
-        left = mergesort(left);
+       left = mergesort(left);
         right = mergesort(right);
 
         return merge(left,right);
     }
     //function to split and merge arrays
-    public static int[] merge(int[] left, int right[])
+    public  int[] merge(int[] left, int[] right)
     {
         int result[] = new int[left.length + right.length];
         //indices
