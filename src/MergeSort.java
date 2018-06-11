@@ -16,10 +16,10 @@ public class MergeSort
         }
         System.out.println(Arrays.toString(ar));
         MergeSort ms = new MergeSort();
-      ms.merge(ar);
-        System.out.println(Arrays.toString(ar));
+        int[] mergesort = ms.mergesort(ar);
+        System.out.println(Arrays.toString(mergesort));
     }
- public int[] mergesort(int[] ar) {
+ public static int[] mergesort(int[] ar) {
         int n = ar.length;
         int[] left;
         int[] right;
@@ -28,6 +28,7 @@ public class MergeSort
             {
                 left = new int[n / 2];
                 right = new int[n / 2];
+                System.out.println(left.length + " " + right.length);
             }
         else
             {
@@ -43,17 +44,21 @@ public class MergeSort
                 }
             else
                 {
-                    right[i - n / 2] = ar[i];
+                    right[i - n/2] = ar[i];
                 }
         }
+     System.out.println(Arrays.toString(left));
+        System.out.println(Arrays.toString(right));
         //recursion to split and merge
-       left = mergesort(left);
-        right = mergesort(right);
+         if (left.length >= 2)
+             left = mergesort(left);
+         if (right.length >= 2)
+             right = mergesort(right);
 
         return merge(left,right);
     }
     //function to split and merge arrays
-    public  int[] merge(int[] left, int[] right)
+    public  static int[] merge(int[] left, int[] right)
     {
         int result[] = new int[left.length + right.length];
         //indices
@@ -63,7 +68,7 @@ public class MergeSort
         //add until one subarray is deplete
         while (i < left.length && j < right.length)
         {
-            if (left[i] < right[i])
+            if (left[i] < right[j])
             {
                 result[index++] = left[i++];
             }
